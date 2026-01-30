@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Placement Portal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="loginScreen" class="auth-container">
+        <div class="auth-card">
+            <h1>Welcome Back</h1>
+            <p>Login to continue your placement preparation</p>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="loginEmail" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn">Login</button>
+                <div class="text-link">
+                    Don't have an account? <a href="#" id="showSignup">Sign Up</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="signupScreen" class="auth-container hidden">
+        <div class="auth-card">
+            <h1>Create Account</h1>
+            <p>Start your placement preparation journey</p>
+            <form id="signupForm">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="signupName" placeholder="John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="signupEmail" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="signupPassword" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn">Sign Up</button>
+                <div class="text-link">
+                    Already have an account? <a href="#" id="showLogin">Login</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="profileSetupScreen" class="auth-container hidden">
+        <div class="auth-card">
+            <h1>Complete Your Profile</h1>
+            <p>Help us personalize your experience</p>
+            <form id="profileSetupForm">
+                <div class="form-group">
+                    <label>Branch</label>
+                    <select id="branch" required>
+                        <option value="">Select Branch</option>
+                        <option value="CSE">Computer Science</option>
+                        <option value="IT">Information Technology</option>
+                        <option value="ECE">Electronics & Communication</option>
+                        <option value="EEE">Electrical Engineering</option>
+                        <option value="MECH">Mechanical Engineering</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Year</label>
+                    <select id="year" required>
+                        <option value="">Select Year</option>
+                        <option value="1">1st Year</option>
+                        <option value="2">2nd Year</option>
+                        <option value="3">3rd Year</option>
+                        <option value="4">4th Year</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Target Companies (comma separated)</label>
+                    <input type="text" id="targetCompanies" placeholder="Google, Microsoft, Amazon" required>
+                </div>
+                <div class="form-group">
+                    <label>Placement Goal Date</label>
+                    <input type="date" id="goalDate" required>
+                </div>
+                <button type="submit" class="btn">Complete Setup</button>
+            </form>
+        </div>
+    </div>
+
+
+
+
+
+    <div id="appContainer" class="app-container">
+        
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>Placement Portal</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-item active" data-screen="dashboard">
+                    
+                    <span>Dashboard</span>
+                </div>
+                <div class="nav-item" data-screen="coding">
+                    <span>Coding Practice</span>
+                </div>
+                <div class="nav-item" data-screen="aptitude">
+                    <span>Aptitude Tracker</span>
+                </div>
+                <div class="nav-item" data-screen="resume">
+                    <span>Resume Manager</span>
+                </div>
+                <div class="nav-item" data-screen="softskills">
+                    <span>Soft Skills</span>
+                </div>
+                <div class="nav-item" data-screen="interviews">
+                    <span>Mock Interviews</span>
+                </div>
+                <div class="nav-item" data-screen="roadmap">
+                    <span>Roadmap</span>
+                </div>
+                <div class="nav-item" data-screen="companies">
+                    <span>Companies</span>
+                </div>
+                <div class="nav-item" data-screen="consistency">
+                    <span>Consistency</span>
+                </div>
+                <div class="nav-item" data-screen="reports">
+                    <span>Reports</span>
+                </div>
+                <div class="nav-item" data-screen="settings">
+                    <span>Settings</span>
+                </div>
+            </nav>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <h1 id="screenTitle">Dashboard</h1>
+                <div class="user-info">
+                    <div class="user-avatar" id="userAvatar">JD</div>
+                    <div>
+                        <div style="font-weight: 600;" id="userName">John Doe</div>
+                        <div style="font-size: 14px; color: var(--text-light);" id="userBranch">CSE, 3rd Year</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="dashboardScreen" class="screen active">
+                <div class="card">
+                    <div class="readiness-score">
+                        <h2>Overall Placement Readiness</h2>
+                        <div class="score-circle" id="readinessCircle" style="--score-deg: 252deg">
+                            <div class="score-value" id="readinessValue">70%</div>
+                        </div>
+                        <p style="color: var(--text-light);">Keep pushing! You're doing great 🚀</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Category Progress</h3>
+                        <div class="streak-badge">
+                            <span>🔥</span>
+                            <span id="currentStreak">5</span>
+                            <span>Day Streak</span>
+                        </div>
+                    </div>
+                    <div class="progress-section" id="categoryProgress">
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title">Quick Actions</h3>
+                    <div class="quick-actions">
+                        <button class="quick-action-btn" onclick="openModal('addCodingModal')">➕ Log Coding</button>
+                        <button class="quick-action-btn" onclick="openModal('addAptitudeModal')">➕ Log Aptitude</button>
+                        <button class="quick-action-btn" onclick="openModal('addInterviewModal')">➕ Log Interview</button>
+                        <button class="quick-action-btn" onclick="switchScreen('roadmap')">📋 View Roadmap</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title">This Week's Tasks</h3>
+                    <div id="weeklyTasksPreview">
+                    </div>
+                </div>
+            </div>
+
+            <div id="codingScreen" class="screen">
+                <div class="card">
+                    <div class="card-header">
+    <h3 class="card-title">Coding Practice Statistics</h3>
+    <div style="display: flex; gap: 10px;">
+        <button class="btn btn-small" onclick="syncCodeforces()">Sync Codeforces</button>
+
+        <button class="btn btn-small" onclick="openModal('addCodingModal')">➕ Add Problem</button>
+    </div>
+</div>
+```
+
+                    <div class="stat-grid">
+                        <div class="stat-card">
+                            <div class="stat-value" id="totalProblems">0</div>
+                            <div class="stat-label">Total Problems</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="easyProblems">0</div>
+                            <div class="stat-label">Easy</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="mediumProblems">0</div>
+                            <div class="stat-label">Medium</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="hardProblems">0</div>
+                            <div class="stat-label">Hard</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title">Recent Activity</h3>
+                    <div id="codingLogs">
+                    </div>
+                </div>
+            </div>
+
+            <div id="aptitudeScreen" class="screen">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Aptitude Test Tracker</h3>
+                        <button class="btn btn-small" onclick="openModal('addAptitudeModal')">➕ Add Test</button>
+                    </div>
+                    <div class="stat-grid">
+                        <div class="stat-card">
+                            <div class="stat-value" id="totalTests">0</div>
+                            <div class="stat-label">Tests Taken</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="avgScore">0%</div>
+                            <div class="stat-label">Average Score</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 class="card-title">Test History</h3>
+                    <div id="aptitudeLogs">
+                    </div>
+                </div>
+            </div>
+
+            <div id="resumeScreen" class="screen">
+                <div class="card">
+                    <h3 class="card-title">Resume Manager</h3>
+                    <div class="resume-upload" onclick="document.getElementById('resumeInput').click()">
+                        <input type="file" id="resumeInput" accept=".pdf" style="display: none;" onchange="uploadResume()">
+                        <p style="font-size: 48px; margin-bottom: 10px;">📄</p>
+                        <p style="font-weight: 600; margin-bottom: 5px;">Upload Resume</p>
+                        <p style="color: var(--text-light); font-size: 14px;">PDF format only</p>
+                    </div>
+                    <div class="resume-list" id="resumeList">
+                    </div>
+                </div>
+            </div>
+
+            <div id="softskillsScreen" class="screen">
+                <div class="card">
+                    <h3 class="card-title">Soft Skills Development</h3>
+                    <p style="color: var(--text-light); margin-bottom: 20px;">Rate yourself on these essential skills</p>
+                    <div id="skillsList">
+                    </div>
+                </div>
+            </div>
+
+            <div id="interviewsScreen" class="screen">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Mock Interview Logs</h3>
+                        <button class="btn btn-small" onclick="openModal('addInterviewModal')">➕ Add Interview</button>
+                    </div>
+                    <div id="interviewLogs">
+                    </div>
+                </div>
+            </div>
+
+            <div id="roadmapScreen" class="screen">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Personalized Weekly Roadmap</h3>
+                        <button class="btn btn-small" onclick="regenerateRoadmap()">🔄 Regenerate</button>
+                    </div>
+                    <div id="roadmapTasks">
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div id="companiesScreen" class="screen">
+                <div class="card">
+                    <h3 class="card-title">Target Companies</h3>
+                    <div id="companiesList">
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div id="consistencyScreen" class="screen">
+                <div class="card">
+                    <h3 class="card-title">Consistency Tracker</h3>
+                    <div class="stat-grid">
+                        <div class="stat-card">
+                            <div class="stat-value" id="consistencyStreak">0</div>
+                            <div class="stat-label">Current Streak (Days)</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="consistencyScore">0%</div>
+                            <div class="stat-label">Consistency Score</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="activeDays">0</div>
+                            <div class="stat-label">Active Days This Month</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="reportsScreen" class="screen">
+                <div class="card">
+                    <h3 class="card-title">Placement Readiness Report</h3>
+                    <p style="color: var(--text-light); margin-bottom: 20px;">Comprehensive summary of your preparation</p>
+                    <button class="btn" onclick="downloadReport()">📥 Download PDF Report</button>
+                </div>
+            </div>
+
+            
+            <div id="settingsScreen" class="screen">
+    <div class="card">
+        <h3 class="card-title">Settings</h3>
+
+        <form id="settingsForm">
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" id="settingsName">
+            </div>
+
+            <div class="form-group">
+                <label>Branch</label>
+                <select id="settingsBranch">
+                    <option value="CSE">Computer Science</option>
+                    <option value="IT">Information Technology</option>
+                    <option value="ECE">Electronics & Communication</option>
+                    <option value="EEE">Electrical Engineering</option>
+                    <option value="MECH">Mechanical Engineering</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Year</label>
+                <select id="settingsYear">
+                    <option value="1">1st Year</option>
+                    <option value="2">2nd Year</option>
+                    <option value="3">3rd Year</option>
+                    <option value="4">4th Year</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Target Companies</label>
+                <input type="text" id="settingsCompanies" placeholder="Google, Amazon, Microsoft">
+            </div>
+
+            <!-- 🔹 NEW: Codeforces Handle -->
+            <div class="form-group">
+                <label>Codeforces Handle</label>
+                <input type="text" id="cfHandle" placeholder="e.g. tourist">
+            </div>
+
+            <button type="submit" class="btn">Save Changes</button>
+
+            <button
+                type="button"
+                class="btn btn-danger"
+                onclick="resetData()"
+                style="margin-top: 10px;"
+            >
+                Reset All Data
+            </button>
+
+            <button
+                type="button"
+                class="btn btn-secondary"
+                onclick="logout()"
+                style="margin-top: 10px;"
+            >
+                Logout
+            </button>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+        </div>
+    </div>
+
+    <div id="addCodingModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Add Coding Problem</h3>
+                <button class="close-modal" onclick="closeModal('addCodingModal')">×</button>
+            </div>
+            <form id="addCodingForm">
+                <div class="form-group">
+                    <label>Platform</label>
+                    <select id="codingPlatform" required>
+                        <option value="LeetCode">LeetCode</option>
+                        <option value="CodeChef">CodeChef</option>
+                        <option value="Codeforces">Codeforces</option>
+                        <option value="HackerRank">HackerRank</option>
+                        <option value="GeeksforGeeks">GeeksforGeeks</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Difficulty</label>
+                    <select id="codingDifficulty" required>
+                        <option value="Easy">Easy</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Hard">Hard</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Number of Problems</label>
+                    <input type="number" id="codingCount" min="1" value="1" required>
+                </div>
+                <button type="submit" class="btn">Add</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="addAptitudeModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Add Aptitude Test</h3>
+                <button class="close-modal" onclick="closeModal('addAptitudeModal')">×</button>
+            </div>
+            <form id="addAptitudeForm">
+                <div class="form-group">
+                    <label>Test Name</label>
+                    <input type="text" id="aptitudeTestName" placeholder="e.g., Quantitative Aptitude" required>
+                </div>
+                <div class="form-group">
+                    <label>Score (%)</label>
+                    <input type="number" id="aptitudeScore" min="0" max="100" required>
+                </div>
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" id="aptitudeDate" required>
+                </div>
+                <button type="submit" class="btn">Add</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="addInterviewModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Add Mock Interview</h3>
+                <button class="close-modal" onclick="closeModal('addInterviewModal')">×</button>
+            </div>
+            <form id="addInterviewForm">
+                <div class="form-group">
+                    <label>Company/Type</label>
+                    <input type="text" id="interviewCompany" placeholder="e.g., Google Technical" required>
+                </div>
+                <div class="form-group">
+                    <label>Questions Faced</label>
+                    <textarea id="interviewQuestions" rows="3" placeholder="List key questions..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Self Rating (1-5)</label>
+                    <select id="interviewRating" required>
+                        <option value="1">1 - Poor</option>
+                        <option value="2">2 - Below Average</option>
+                        <option value="3">3 - Average</option>
+                        <option value="4">4 - Good</option>
+                        <option value="5">5 - Excellent</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" id="interviewDate" required>
+                </div>
+                <button type="submit" class="btn">Add</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="notification" class="notification"></div>
+
+   <script src="script.js" defer></script>
+
+</body>
+</html>
