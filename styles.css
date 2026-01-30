@@ -351,7 +351,7 @@ body {
     transition: width 0.5s ease;
 }
 
-/* Streak Badge */
+
 .streak-badge {
     display: inline-flex;
     align-items: center;
@@ -363,7 +363,7 @@ body {
     font-weight: 600;
 }
 
-/* Quick Actions */
+
 .quick-actions {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));

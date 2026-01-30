@@ -1,4 +1,4 @@
-// 1️⃣ Test user seed (top of file)
+
 if (!localStorage.getItem('users')) {
   localStorage.setItem('users', JSON.stringify([
     {
@@ -14,7 +14,7 @@ if (!localStorage.getItem('users')) {
   ]));
 }
 
-// 2️⃣ Storage manager (ONLY ONCE)
+
 const Storage = {
   get(key) {
     const data = localStorage.getItem(key);
@@ -29,9 +29,6 @@ const Storage = {
 };
 
 
-
-
-// Initialize App State
 let currentUser = null;
 let appData = {
     coding: [],
@@ -133,8 +130,8 @@ function showApp() {
 
     // 🔁 Check if assessment is needed
     if (isAssessmentRequired()) {
-        openAssessmentScreen();   // redirect user to test
-        return;                   // stop dashboard load
+        openAssessmentScreen();   
+        return;                   
     }
 
     updateDashboard();
@@ -152,7 +149,7 @@ function isAssessmentRequired() {
     }
 
     if (!appData.lastAssessmentDate) {
-        return true; // corrupted or missing date safeguard
+        return true; 
     }
 
     const last = new Date(appData.lastAssessmentDate);
@@ -170,8 +167,7 @@ function isAssessmentRequired() {
 function openAssessmentScreen() {
     alert('Please complete your assessment to continue.');
 
-    // Later you’ll replace this with an actual screen
-    // switchScreen('assessment');
+    
 }
 
 
