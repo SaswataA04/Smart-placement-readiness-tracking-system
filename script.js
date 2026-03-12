@@ -1,4 +1,3 @@
-
 if (!localStorage.getItem('users')) {
   localStorage.setItem('users', JSON.stringify([
     {
@@ -10,9 +9,88 @@ if (!localStorage.getItem('users')) {
       year: '3',
       targetCompanies: ['Google', 'Amazon'],
       goalDate: '2026-12-31'
+    },
+    {
+      id: 2,
+      name: 'Rahul Sharma',
+      email: 'rahul@test.com',
+      password: '123456',
+      branch: 'CSE',
+      year: '4',
+      targetCompanies: ['Microsoft', 'Adobe'],
+      goalDate: '2025-12-31'
+    },
+    {
+      id: 3,
+      name: 'Priya Singh',
+      email: 'priya@test.com',
+      password: '123456',
+      branch: 'IT',
+      year: '3',
+      targetCompanies: ['Amazon', 'Flipkart'],
+      goalDate: '2026-06-30'
+    },
+    {
+      id: 4,
+      name: 'Amit Das',
+      email: 'amit@test.com',
+      password: '123456',
+      branch: 'ECE',
+      year: '4',
+      targetCompanies: ['TCS', 'Infosys'],
+      goalDate: '2025-11-30'
+    },
+    {
+      id: 5,
+      name: 'Sneha Roy',
+      email: 'sneha@test.com',
+      password: '123456',
+      branch: 'CSE',
+      year: '2',
+      targetCompanies: ['Google', 'Meta'],
+      goalDate: '2027-12-31'
+    },
+    {
+      id: 6,
+      name: 'Arjun Patel',
+      email: 'arjun@test.com',
+      password: '123456',
+      branch: 'IT',
+      year: '3',
+      targetCompanies: ['Netflix', 'Uber'],
+      goalDate: '2026-10-15'
     }
   ]));
 }
+
+
+
+// List of assessment questions with images and correct answers
+
+const assessmentQuestions = [
+{
+image: "https://blogger.googleusercontent.com/img/a/AVvXsEhchQX_Z3th7YezNrXW8n7Ab0T8MgjQfg8uvPYBP5pxpU9IvrTjZeWty5A3oy5MB3iEYhm-BcjJwsA8Gh3BJT9HQq1Mvslm9KfipfG-Qj7zPeaJ-lMWc-iVSHs0OhMWnZDiT53VHH1FjE5HWp3nyfDkg34eisLfRUCsb6FiKsw0N2Gd8SImtVT3NxYFAAIr",
+answer: "A"
+},
+{
+image: "https://blogger.googleusercontent.com/img/a/AVvXsEhne_eAz83RmCu2nBBrhA05S8rikGomLBfEbFQL1m8tUBJ1rNnsayF87y6pdLQUPAOOe3jfMxcptj6nUKnaYQYcF__kyOIxqWZs-r8ryrSLdPadbOdEmSywyu8R9vczKkxu4vYilUHCj9yoDtB5S234A285EhhkZKnelNjLug87HXGrjA4lw1voE2Wdvj-2",
+answer: "C"
+},
+{
+image: "https://blogger.googleusercontent.com/img/a/AVvXsEhB_A17Y07KMcyO_YGSjG8D_8iJvVkA4R4u3JG_mxHCfMyMW9UFEG5MgA0x5Gl-9g494_qtSIkHR3nkTZXgfZsawo77RoUMRASRgyFbezTPfF1MhZQVFxtJ7CIittZ0VypuYVNxwl8U17UwPPdU8RSYfr1iJRVYKiYNalSNkLlQDusgDJYwQP-Jajuchn9G",
+answer: "B"
+},
+{
+image: "https://blogger.googleusercontent.com/img/a/AVvXsEgq1hIXB0eDuVKOr1MCXnMSKFCrl-ad1Tqg-XG5lravW2oa1CQkU8G4-wMqdiJ-KRfCPOzuyNzNElcWB8_O7MM_QA3Rq9-d18XGYafn8FZaw1DxG5mbo68LsXadS6n0-B99-8tlU1ZlNv_2i0E_KmQpEGjnFgGLu_jd8LybgIw_p4HNb5nut7lu_L5ak1yG",
+answer: "A"
+},
+{
+image: "https://blogger.googleusercontent.com/img/a/AVvXsEgoPTaYEriVtokcajoqYRbasK-ILCJcByWpYUjt26SihZdMJTFdPQ73X4QfS4dXz_Dm2NIWnB2mU_oKvRzd3VkzslfUsg0ifXandq-cwBZu2QIOm1ZW6sCJsPl5gn1ZWdPiFxqL1fu-otMWhXrt-3gMNYdjy4u9REfceOboc3Hgt2t1MxNdB8PmCvEmJ9FF",
+answer: "A"
+}
+];
+
+
 
 
 const Storage = {
@@ -30,6 +108,9 @@ const Storage = {
 
 
 let currentUser = null;
+
+
+// Main application data structure
 let appData = {
     coding: [],
     aptitude: [],
@@ -84,6 +165,8 @@ document.getElementById('loginForm').addEventListener('submit', (e) => {
     }
 });
 
+
+// Signup form
 document.getElementById('signupForm').addEventListener('submit', (e) => {
     e.preventDefault();
     const name = document.getElementById('signupName').value;
@@ -102,6 +185,8 @@ document.getElementById('signupForm').addEventListener('submit', (e) => {
     document.getElementById('profileSetupScreen').classList.remove('hidden');
 });
 
+
+// Profile setup after signup
 document.getElementById('profileSetupForm').addEventListener('submit', (e) => {
     e.preventDefault();
     
@@ -120,6 +205,9 @@ document.getElementById('profileSetupForm').addEventListener('submit', (e) => {
     showApp();
 });
 
+
+
+// SHOW MAIN APP
 function showApp() {
     document.getElementById('loginScreen').classList.add('hidden');
     document.getElementById('signupScreen').classList.add('hidden');
@@ -128,19 +216,24 @@ function showApp() {
 
     updateUserInfo();
 
-    // 🔁 Check if assessment is needed
-    if (isAssessmentRequired()) {
-        openAssessmentScreen();   
-        return;                   
-    }
-
-    updateDashboard();
-    generateRoadmap();
-    loadRecommendations();       // NEW
+    openAssessmentScreen();
+   // updateDashboard();
+   // generateRoadmap();
+   // loadRecommendations();       // NEW
 }
 
 
 
+//---test func to see if assessment screen opens on login for new users or after 15 days for existing users------------------
+function openAssessmentScreen() {
+
+    console.log("ASSESSMENT OPENING");
+
+    switchScreen("assessment");
+
+}
+
+//---------------------------------
 
 
 function isAssessmentRequired() {
@@ -163,22 +256,33 @@ function isAssessmentRequired() {
 }
 
 
-
 function openAssessmentScreen() {
-    alert('Please complete your assessment to continue.');
 
-    
+    switchScreen("assessment");
+
+    const container = document.getElementById("questionsContainer");
+
+    if(!container) return;
+
+    const html = assessmentQuestions.map((q,index)=>`
+
+        <div class="question-card">
+            <h3>Question ${index+1}</h3>
+
+            <img src="${q.image}" style="max-width:400px">
+
+            <div>
+                <label><input type="radio" name="q${index}" value="A"> A</label>
+                <label><input type="radio" name="q${index}" value="B"> B</label>
+                <label><input type="radio" name="q${index}" value="C"> C</label>
+                <label><input type="radio" name="q${index}" value="D"> D</label>
+            </div>
+        </div>
+
+    `).join("");
+
+    container.innerHTML = html;
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -227,7 +331,7 @@ function initializeUserData() {
 }
 
 
-
+// RECOMMENDATION SYSTEM
 function generateRecommendations(assessment) {
   const recs = [];
 
@@ -295,13 +399,7 @@ function loadRecommendations() {
 
 
 
-
-
-
-
-
-
-
+// load user progress data
 
 function loadUserData() {
     const data = Storage.get(`appData_${currentUser.id}`);
@@ -317,6 +415,8 @@ function saveData() {
     Storage.set(`appData_${currentUser.id}`, appData);
 }
 
+
+//streak func
 function updateStreak() {
     const today = new Date().toDateString();
     const lastActive = appData.lastActive;
@@ -353,7 +453,7 @@ function updateStreak() {
     document.getElementById('consistencyScore').textContent = consistencyScore + '%';
 }
 
-// Navigation
+// Navigation Panel
 document.querySelectorAll('.nav-item').forEach(item => {
     item.addEventListener('click', () => {
         const screen = item.dataset.screen;
@@ -361,19 +461,26 @@ document.querySelectorAll('.nav-item').forEach(item => {
     });
 });
 
+
+
+
+
 function switchScreen(screenName) {
+
     document.querySelectorAll('.nav-item').forEach(item => {
         item.classList.remove('active');
     });
-    
-    document.querySelector(`[data-screen="${screenName}"]`).classList.add('active');
-    
+
+    const navItem = document.querySelector(`[data-screen="${screenName}"]`);
+    if (navItem) navItem.classList.add('active');
+
     document.querySelectorAll('.screen').forEach(screen => {
         screen.classList.remove('active');
     });
-    
-    document.getElementById(`${screenName}Screen`).classList.add('active');
-    
+
+    const targetScreen = document.getElementById(`${screenName}Screen`);
+    if (targetScreen) targetScreen.classList.add('active');
+
     const titles = {
         dashboard: 'Dashboard',
         coding: 'Coding Practice',
@@ -387,9 +494,11 @@ function switchScreen(screenName) {
         reports: 'Reports',
         settings: 'Settings'
     };
-    
-    document.getElementById('screenTitle').textContent = titles[screenName];
-    
+
+    if (titles[screenName]) {
+        document.getElementById('screenTitle').textContent = titles[screenName];
+    }
+
     if (screenName === 'coding') loadCodingData();
     if (screenName === 'aptitude') loadAptitudeData();
     if (screenName === 'softskills') loadSkillsData();
@@ -429,12 +538,12 @@ function updateDashboard() {
 
     document.getElementById('categoryProgress').innerHTML = progressHtml;
 
-    // 🔹 Activity-based score
+    //  Activity-based score
     const activityScore = Math.round(
         categories.reduce((sum, cat) => sum + cat.value, 0) / categories.length
     );
 
-    // 🔹 Assessment-based score (NEW)
+    // Assessment-based score (NEW)
     let assessmentScore = 0;
     if (appData.assessments && appData.assessments.length > 0) {
         const latest = appData.assessments[appData.assessments.length - 1];
@@ -443,7 +552,7 @@ function updateDashboard() {
         );
     }
 
-    // 🔹 Final readiness score (70% activity + 30% assessment)
+    //  Final readiness score (70% activity + 30% assessment)
     const overallScore = Math.round(
         (activityScore * 0.7) + (assessmentScore * 0.3)
     );
@@ -497,6 +606,9 @@ function loadWeeklyTasksPreview() {
     
     document.getElementById('weeklyTasksPreview').innerHTML = html || '<p style="color: var(--text-light);">No tasks available. Generate a roadmap!</p>';
 }
+
+
+
 
 // Coding Practice Functions
 document.getElementById('addCodingForm').addEventListener('submit', (e) => {
@@ -909,7 +1021,7 @@ window.addEventListener('load', () => {
 
 
 async function syncCodeforces() {
-    console.log('Sync button clicked'); // 🔍 debug line
+    console.log('Sync button clicked'); //  debug line
 
     const handle = currentUser?.cfHandle;
 
@@ -926,7 +1038,7 @@ async function syncCodeforces() {
         );
 
         const data = await res.json();
-        console.log(data); // 🔍 debug
+        console.log(data); // debug
 
         if (data.status !== 'OK') {
             throw new Error('Invalid handle');
@@ -962,4 +1074,39 @@ async function syncCodeforces() {
         showNotification('Failed to sync Codeforces', 'error');
     }
 }
+
+//new code for assessment submission
+document.getElementById("assessmentForm").addEventListener("submit",function(e){
+
+e.preventDefault();
+
+let correct = 0;
+
+assessmentQuestions.forEach((q,i)=>{
+
+const selected = document.querySelector(`input[name="q${i}"]:checked`);
+
+if(selected && selected.value === q.answer){
+correct++;
+}
+
+});
+
+const percentage = Math.round((correct/assessmentQuestions.length)*100);
+
+submitAssessment({
+coding: percentage,
+aptitude: percentage,
+logic: percentage,
+softSkills: percentage
+});
+
+showNotification(`Assessment completed. Score: ${percentage}%`);
+
+switchScreen("dashboard");
+
+});
+
+
+
 

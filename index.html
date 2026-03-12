@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+     <!-- ================= LOGIN SCREEN ================= -->
+    <!-- Initial login interface shown to users -->
+
     <div id="loginScreen" class="auth-container">
         <div class="auth-card">
             <h1>Welcome Back</h1>
@@ -27,6 +31,11 @@
             </form>
         </div>
     </div>
+
+
+
+     <!-- ================= SIGNUP SCREEN ================= -->
+    <!-- Hidden initially; appears when user clicks Sign Up -->
 
     <div id="signupScreen" class="auth-container hidden">
         <div class="auth-card">
@@ -53,6 +62,10 @@
         </div>
     </div>
 
+
+
+<!--  PROFILE SETUP SCREEN  -->
+    <!-- Appears after signup to collect placement information -->
     <div id="profileSetupScreen" class="auth-container hidden">
         <div class="auth-card">
             <h1>Complete Your Profile</h1>
@@ -94,7 +107,8 @@
 
 
 
-
+<!-- = MAIN APP CONTAINER = -->
+    <!-- Hidden until user logs in -->
 
     <div id="appContainer" class="app-container">
         
@@ -138,7 +152,23 @@
                     <span>Settings</span>
                 </div>
             </nav>
+
+
+             <!-- Logout button -->
+<div class="sidebar-footer">
+      <button onclick="logout()" class="btn btn-danger">
+        Logout
+      </button>
+    </div>
+
+
+
         </div>
+
+
+
+
+                <!-- ========== MAIN CONTENT AREA ========== -->
 
         <div class="main-content">
             <div class="header">
@@ -152,14 +182,46 @@
                 </div>
             </div>
 
-            <div id="dashboardScreen" class="screen active">
+
+
+
+
+
+
+
+             <!-- = ASSESSMENT SCREEN = -->
+            <!-- Initial test to evaluate placement readiness -->
+            <div id="assessmentScreen" class="screen active">
+
+<h2>Placement Readiness Assessment</h2>
+
+<form id="assessmentForm">
+
+<div id="questionsContainer"></div>
+
+<button type="submit" class="btn btn-primary">
+Submit Assessment
+</button>
+
+</form>
+
+</div>
+
+
+
+
+            <!-- DASHBOARD SCREEN -->
+            <!-- Shows readiness score and progress -->
+
+
+            <div id="dashboardScreen" class="screen">
                 <div class="card">
                     <div class="readiness-score">
                         <h2>Overall Placement Readiness</h2>
                         <div class="score-circle" id="readinessCircle" style="--score-deg: 252deg">
                             <div class="score-value" id="readinessValue">70%</div>
                         </div>
-                        <p style="color: var(--text-light);">Keep pushing! You're doing great 🚀</p>
+                        <p style="color: var(--text-light);">Keep pushing! You're doing great </p>
                     </div>
                 </div>
 
@@ -167,7 +229,7 @@
                     <div class="card-header">
                         <h3 class="card-title">Category Progress</h3>
                         <div class="streak-badge">
-                            <span>🔥</span>
+                            <span></span>
                             <span id="currentStreak">5</span>
                             <span>Day Streak</span>
                         </div>
@@ -179,10 +241,10 @@
                 <div class="card">
                     <h3 class="card-title">Quick Actions</h3>
                     <div class="quick-actions">
-                        <button class="quick-action-btn" onclick="openModal('addCodingModal')">➕ Log Coding</button>
-                        <button class="quick-action-btn" onclick="openModal('addAptitudeModal')">➕ Log Aptitude</button>
-                        <button class="quick-action-btn" onclick="openModal('addInterviewModal')">➕ Log Interview</button>
-                        <button class="quick-action-btn" onclick="switchScreen('roadmap')">📋 View Roadmap</button>
+                        <button class="quick-action-btn" onclick="openModal('addCodingModal')"> Log Coding</button>
+                        <button class="quick-action-btn" onclick="openModal('addAptitudeModal')"> Log Aptitude</button>
+                        <button class="quick-action-btn" onclick="openModal('addInterviewModal')"> Log Interview</button>
+                        <button class="quick-action-btn" onclick="switchScreen('roadmap')"> View Roadmap</button>
                     </div>
                 </div>
 
@@ -193,6 +255,11 @@
                 </div>
             </div>
 
+
+
+
+             <!-- ================= CODING SCREEN ================= -->
+            <!-- Tracks solved problems -->
             <div id="codingScreen" class="screen">
                 <div class="card">
                     <div class="card-header">
@@ -200,7 +267,7 @@
     <div style="display: flex; gap: 10px;">
         <button class="btn btn-small" onclick="syncCodeforces()">Sync Codeforces</button>
 
-        <button class="btn btn-small" onclick="openModal('addCodingModal')">➕ Add Problem</button>
+        <button class="btn btn-small" onclick="openModal('addCodingModal')"> Add Problem</button>
     </div>
 </div>
 ```
@@ -236,7 +303,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Aptitude Test Tracker</h3>
-                        <button class="btn btn-small" onclick="openModal('addAptitudeModal')">➕ Add Test</button>
+                        <button class="btn btn-small" onclick="openModal('addAptitudeModal')"> Add Test</button>
                     </div>
                     <div class="stat-grid">
                         <div class="stat-card">
@@ -257,12 +324,23 @@
                 </div>
             </div>
 
+
+           
+
+
+
+
+
+
+
+
+
             <div id="resumeScreen" class="screen">
                 <div class="card">
                     <h3 class="card-title">Resume Manager</h3>
                     <div class="resume-upload" onclick="document.getElementById('resumeInput').click()">
                         <input type="file" id="resumeInput" accept=".pdf" style="display: none;" onchange="uploadResume()">
-                        <p style="font-size: 48px; margin-bottom: 10px;">📄</p>
+                        <p style="font-size: 48px; margin-bottom: 10px;"></p>
                         <p style="font-weight: 600; margin-bottom: 5px;">Upload Resume</p>
                         <p style="color: var(--text-light); font-size: 14px;">PDF format only</p>
                     </div>
@@ -284,7 +362,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Mock Interview Logs</h3>
-                        <button class="btn btn-small" onclick="openModal('addInterviewModal')">➕ Add Interview</button>
+                        <button class="btn btn-small" onclick="openModal('addInterviewModal')">Add Interview</button>
                     </div>
                     <div id="interviewLogs">
                     </div>
@@ -295,7 +373,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Personalized Weekly Roadmap</h3>
-                        <button class="btn btn-small" onclick="regenerateRoadmap()">🔄 Regenerate</button>
+                        <button class="btn btn-small" onclick="regenerateRoadmap()">Regenerate</button>
                     </div>
                     <div id="roadmapTasks">
                         
@@ -336,7 +414,7 @@
                 <div class="card">
                     <h3 class="card-title">Placement Readiness Report</h3>
                     <p style="color: var(--text-light); margin-bottom: 20px;">Comprehensive summary of your preparation</p>
-                    <button class="btn" onclick="downloadReport()">📥 Download PDF Report</button>
+                    <button class="btn" onclick="downloadReport()"> Download PDF Report</button>
                 </div>
             </div>
 
@@ -377,7 +455,7 @@
                 <input type="text" id="settingsCompanies" placeholder="Google, Amazon, Microsoft">
             </div>
 
-            <!-- 🔹 NEW: Codeforces Handle -->
+            <!--  NEW: Codeforces Handle -->
             <div class="form-group">
                 <label>Codeforces Handle</label>
                 <input type="text" id="cfHandle" placeholder="e.g. tourist">
