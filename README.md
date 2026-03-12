@@ -1,6 +1,6 @@
 # Student Placement Portal
 
-A web-based dashboard that helps students track their placement preparation, analyze readiness, and build consistent study habits for campus placements.
+A web-based dashboard that helps students track their placement preparation, analyze readiness, and build consistent study habits for campus placement.
 
 The system provides tools for **coding practice tracking, aptitude test logging, interview preparation, resume management, and personalized preparation roadmaps.
 
